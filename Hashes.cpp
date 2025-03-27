@@ -18,8 +18,8 @@ static inline uint32_t rotateLeft32(uint32_t x, unsigned r) {
   return (x << r) | (x >> (32 - r));
 }
 
-// Take 4 bytes b0, b1, b2, b3, compute cumulative partial sums mod 256,
-// then pack them into a 32-bit integer in little-endian order.
+// Taking the four bytes, computing their partial sums (casted to mod 256 (8-bit)), then
+// XOR'ing them with 8-bit shifts to "append" them to a 32-bit int.
 static inline uint32_t packPartialSums(const uint8_t b0,
                                      const uint8_t b1,
                                      const uint8_t b2,
